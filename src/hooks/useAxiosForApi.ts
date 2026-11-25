@@ -1,12 +1,16 @@
-import axios, {axiosError, type InternalAxiosRequestConfig} from 'axios';
-import constants from '../components/common/constants';
 
-interface apiError{
-    message?:string;
-}
+import type { AxiosInstance } from "axios";
+import axios from "axios";
+import constants from "../components/common/constants";
+import { useAuth } from "../components/auth/useAuth";
 
-const api=axios.create({
-    baseURL: constants.API_HOST,
-    headers: {'Content-Type': 'application/json'},
-});
+export const useAxiosForApi = (): [AxiosInstance] => {
+    const auth = useAuth();
 
+    if (!auth.token) {
+        throw new Error("No auth token available. This hook cannot be used outside of an authenticated context.");
+    }
+
+    const instance = axios.create({ baseURL: constants.API_HOST, headers: { Authorization: "Bearer " + auth.token } });
+    return [instance,];
+};

@@ -1,7 +1,14 @@
-import { Routes, Route Navigate} from 'react-router-dom';
+import { Routes, Route, Navigate} from 'react-router-dom';
 import { AuthProvider} from './components/auth/useAuth';
 
 import LayoutLogin from './components/LayoutLogin';
+import Layout from './components/Layout';
+import ProtectedRoute from './components/ProtectedRoute';
+import Logout from './components/Logout';
+import LoginPage from './components/LoginPage';
+import ResgisterPage from './components/RegisterPage';
+import DashboardPage from './components/DashboardPage';
+
 
 function App() {
 
@@ -16,14 +23,16 @@ function App() {
         </Route>
 
         <Route element={<Layout/>}>
-          <Route path="/" element={<Navigate to= "/home" replace/>}/>
-          <Route path="/home" element={<HomePage/>}/>
+          <Route path="/" element={<Navigate to= "/dashboard" replace/>}/>
+          <Route path="/dashboard" element={<DashboardPage/>}/>
         </Route>
 
         <Route element={<ProtectedRoute><Layout/></ProtectedRoute>}>
           <Route path="/asd" element={<asdPage/>}/>
           <Route path="/auth/logout" element={<Logout/>}/>
         </Route>
+      </Routes>
+    </AuthProvider>
 
   )
 }

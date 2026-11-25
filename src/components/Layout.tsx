@@ -6,11 +6,10 @@ export default function Layout() {
   return (
     <div className="min-h-screen flex flex-col bg-slate-950 text-slate-100">
       <header className="h-16 border-b border-slate-800 flex items-center justify-between px-6">
-        <Link to="/" className="font-bold text-lg text-white">Spark</Link>
+        <Link to="/" className="font-bold text-lg text-white">CampusCultura</Link>
         <nav className="flex items-center gap-4 text-sm">
-          <Link to="/" className="hover:text-red-400">An</Link>
-          <Link to="/favorites" className="hover:text-red-400">Favoritos</Link>
-          <Link to="/history" className="hover:text-red-400">Historial</Link>
+          <Link to="/activities" className="hover:text-red-400">Inscripcion</Link>
+          <Link to="/my-enrollments" className="hover:text-red-400">Mis operaciones</Link>
 
           {isAuthenticated ? (
             <div className="flex items-center gap-3">
